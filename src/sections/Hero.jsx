@@ -141,7 +141,7 @@ export const Hero = () => {
               />
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
-                  src="/profile-photo.jpg"
+                  src="/profile.jpg"
                   alt="Pedro Machado"
                   className="w-full aspect-[4/5] object-cover rounded-2xl"
                 />
@@ -158,7 +158,8 @@ export const Hero = () => {
                 {/* Stats Badge */}
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
                   <div className="text-2xl font-bold text-primary">1+</div>
-                  <div className="text-xs text-muted-foreground">
+                  {/* put text-muted-foreground if profile background is dark enough */}
+                  <div className="text-xs text-foreground"> 
                     Years Exp.
                   </div>
                 </div>
