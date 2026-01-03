@@ -29,7 +29,7 @@ const projects = [
     github: "#",
   },
   {
-    title: "Prize Bond Checer",
+    title: "Prize Bond Checker",
     description:
       "A comprehensive financial analytics platform with real-time data visualization, portfolio management, and AI-powered insights.",
     image: "/projects/prize-bond-cheker.png",
