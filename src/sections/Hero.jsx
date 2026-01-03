@@ -3,6 +3,7 @@ import {
   ArrowRight,
   ChevronDown,
   Download,
+  Facebook,
   Github,
   Linkedin,
   Twitter,
@@ -115,9 +116,10 @@ export const Hero = () => {
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
               <span className="text-sm text-muted-foreground">Follow me: </span>
               {[
-                { icon: Github, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Twitter, href: "#" },
+                { icon: Github, href: "https://github.com/hridoy-37" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/hridoy379/" },
+                { icon: Twitter, href: "https://x.com/MostafaRyhan" },
+                { icon: Facebook, href: "https://www.facebook.com/mostafaryhan.hridoy.9/" },
               ].map((social, idx) => (
                 <a
                   key={idx}

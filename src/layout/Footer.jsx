@@ -1,9 +1,10 @@
-import { Github, Linkedin, Twitter, Heart } from "lucide-react";
+import { Github, Linkedin, Twitter, Facebook } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/hridoy-37", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/hridoy379/", label: "LinkedIn" },
   { icon: Twitter, href: "https://x.com/MostafaRyhan", label: "Twitter" },
+  { icon: Facebook, href: "https://www.facebook.com/mostafaryhan.hridoy.9/", label: "Facebook" },
 ];
 
 const footerLinks = [
