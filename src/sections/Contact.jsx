@@ -19,7 +19,7 @@ const contactInfo = [
   },
   {
     icon: Phone,
-    label: "Phone",
+    label: "Phone / WhatsApp",
     value: "+8801874518655",
     href: "tel:+8801874518655",
   },
