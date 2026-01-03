@@ -11,15 +11,6 @@ const projects = [
     github: "#",
   },
   {
-    title: "Fintech Dashboard",
-    description:
-      "A comprehensive financial analytics platform with real-time data visualization, portfolio management, and AI-powered insights.",
-    image: "/projects/project1.png",
-    tags: ["React", "Typescript", "NodeJS"],
-    link: "#",
-    github: "#",
-  },
-  {
     title: "E-Commerce Platform",
     description:
       "A full-featured e-commerce solution with inventory management, payment processing, and analytics dashboard.",
@@ -29,12 +20,21 @@ const projects = [
     github: "#",
   },
   {
-    title: "AI Video Assistant",
+    title: "AI Video Generator",
     description:
-      "An intelligent video generation tool powered by Sora, and Veo. helping users create better content faster.",
+      "An intelligent video generation tool powered by Sora, and Veo. helping users create better content faster for coworker AI. #cowoker.im ",
     image: "/projects/coworker-im-2.png",
     tags: ["React", "OpenAI", "Python", "FastAPI"],
-    link: "#",
+    link: "https://coworker.im/dashboard/video",
+    github: "#",
+  },
+  {
+    title: "Prize Bond Checer",
+    description:
+      "A comprehensive financial analytics platform with real-time data visualization, portfolio management, and AI-powered insights.",
+    image: "/projects/prize-bond-cheker.png",
+    tags: ["React", "Typescript", "Twailwind"],
+    link: "https://prize-bond-checker-bd.vercel.app/",
     github: "#",
   },
 ];
