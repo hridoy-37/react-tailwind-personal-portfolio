@@ -14,19 +14,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "pedro@example.com",
-    href: "mailto:pedro@example.com",
+    value: "mostafaryhanhridoy@gmail.com",
+    href: "mailto:mostafaryhanhridoy@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    value: "+8801874518655",
+    href: "tel:+8801874518655",
   },
   {
     icon: MapPin,
-    label: "Location",
-    value: "San Francisco, CA",
+    label: "Chattogram",
+    value: "Chattogram, Bangladesh",
     href: "#",
   },
 ];
@@ -76,11 +76,11 @@ export const Contact = () => {
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      console.error("EmailJS error:", error);
+      console.error("EmailJS error:", err);
       setSubmitStatus({
         type: "error",
         message:
-          error.text || "Failed to send message. Please try again later.",
+          err.text || "Failed to send message. Please try again later.",
       });
     } finally {
       setIsLoading(false);
@@ -191,11 +191,10 @@ export const Contact = () => {
               {submitStatus.type && (
                 <div
                   className={`flex items-center gap-3
-                     p-4 rounded-xl ${
-                       submitStatus.type === "success"
-                         ? "bg-green-500/10 border border-green-500/20 text-green-400"
-                         : "bg-red-500/10 border border-red-500/20 text-red-400"
-                     }`}
+                     p-4 rounded-xl ${submitStatus.type === "success"
+                      ? "bg-green-500/10 border border-green-500/20 text-green-400"
+                      : "bg-red-500/10 border border-red-500/20 text-red-400"
+                    }`}
                 >
                   {submitStatus.type === "success" ? (
                     <CheckCircle className="w-5 h-5 flex-shrink-0" />

@@ -2,11 +2,12 @@ import { Button } from "@/components/Button";
 import {
   ArrowRight,
   ChevronDown,
+  Download,
   Github,
   Linkedin,
   Twitter,
-  Download,
 } from "lucide-react";
+import { useState } from "react";
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
 
 const skills = [
@@ -31,6 +32,15 @@ const skills = [
 ];
 
 export const Hero = () => {
+  const [dots] = useState(() => {
+    return [...Array(30)].map(() => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 15 + Math.random() * 20,
+      delay: Math.random() * 5,
+    }));
+  });
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Bg */}
@@ -45,17 +55,16 @@ export const Hero = () => {
 
       {/* Green Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
+        {dots.map((dot, i) => (
           <div
+            key={i}
             className="absolute w-1.5 h-1.5 rounded-full opacity-60"
             style={{
               backgroundColor: "#20B2A6",
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `slow-drift ${
-                15 + Math.random() * 20
-              }s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 5}s`,
+              left: `${dot.left}%`,
+              top: `${dot.top}%`,
+              animation: `slow-drift ${dot.duration}s ease-in-out infinite`,
+              animationDelay: `${dot.delay}s`,
             }}
           />
         ))}
@@ -85,7 +94,7 @@ export const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I'm Pedro Machado — a software engineer specializing in
+                Hi, I'm Mostafa Ryhan Hridoy — a software engineer specializing in
                 React, Next.js, and TypeScript. I build scalable, performant web
                 applications that users love.
               </p>
@@ -148,7 +157,7 @@ export const Hero = () => {
                 </div>
                 {/* Stats Badge */}
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
-                  <div className="text-2xl font-bold text-primary">5+</div>
+                  <div className="text-2xl font-bold text-primary">1+</div>
                   <div className="text-xs text-muted-foreground">
                     Years Exp.
                   </div>

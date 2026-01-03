@@ -1,9 +1,9 @@
 import { Github, Linkedin, Twitter, Heart } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Github, href: "https://github.com/hridoy-37", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/hridoy379/", label: "LinkedIn" },
+  { icon: Twitter, href: "https://x.com/MostafaRyhan", label: "Twitter" },
 ];
 
 const footerLinks = [
@@ -26,7 +26,7 @@ export const Footer = () => {
               PM<span className="text-primary">.</span>
             </a>
             <p className="text-sm text-muted-foreground mt-2">
-              © {currentYear} Pedro Machado. All rights reserved.
+              © {currentYear} Hridoy. All rights reserved.
             </p>
           </div>
 
