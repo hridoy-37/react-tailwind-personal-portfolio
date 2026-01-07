@@ -13,7 +13,7 @@ const experiences = [
     company: "Self-Employed",
     description:
       "Delivered custom web solutions for small businesses and startups. Built 15+ websites and applications, handling everything from design to deployment.",
-    technologies: ["JavaScript", "PHP", "WordPress", "MySQL"],
+    technologies: ["JavaScript", "Express", "PostgreSQL"],
     current: false,
   },
 ];
