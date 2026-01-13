@@ -13,10 +13,10 @@ const projects = [
   {
     title: "E-Commerce Platform",
     description:
-      "A full-featured e-commerce solution with inventory management, payment processing, and analytics dashboard.",
-    image: "/projects/project2.png",
+      "A full-featured fashion e-commerce solution with inventory management, payment processing, and analytics dashboard.",
+    image: "/projects/shoplanet.png",
     tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
-    link: "#",
+    link: "http://62.171.157.225:8086/",
     github: "#",
   },
   {
