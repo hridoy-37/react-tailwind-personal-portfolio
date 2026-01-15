@@ -25,7 +25,7 @@ const contactInfo = [
   },
   {
     icon: MapPin,
-    label: "Chattogram",
+    label: "Location",
     value: "Chattogram, Bangladesh",
     href: "#",
   },
