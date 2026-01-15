@@ -1,5 +1,5 @@
 import { ArrowUpRight, Github } from "lucide-react";
-import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+// import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 const projects = [
   {
     title: "Coworker AI",
@@ -81,8 +81,8 @@ export const Projects = () => {
                 />
                 <div
                   className="absolute inset-0 
-                bg-gradient-to-t from-card via-card/50
-                 to-transparent opacity-60"
+                  to-t from-card via-card/50
+                  to-transparent opacity-60"
                 />
                 {/* Overlay Links */}
                 <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -105,14 +105,18 @@ export const Projects = () => {
               <div className="p-6 space-y-4">
                 <div className="flex items-start justify-between">
                   <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                    {project.title}
+                    <a href={project.link} target="_blank" noreferrer>
+                      {project.title}
+                    </a>
                   </h3>
-                  <ArrowUpRight
-                    className="w-5 h-5 
-                  text-muted-foreground group-hover:text-primary
-                   group-hover:translate-x-1 
-                   group-hover:-translate-y-1 transition-all"
-                  />
+                  <a href={project.link} target="_blank" noreferrer>
+                    <ArrowUpRight
+                      className="w-5 h-5 
+                      text-muted-foreground group-hover:text-primary
+                      group-hover:translate-x-1 
+                      group-hover:-translate-y-1 transition-all"
+                    />
+                  </a>
                 </div>
                 <p className="text-muted-foreground text-sm">
                   {project.description}
