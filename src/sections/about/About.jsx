@@ -70,9 +70,9 @@ export const About = () => {
 
             <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300">
               <p className="text-lg font-medium italic text-foreground">
-                "My mission is to create digital experiences that are not just
-                functional, but truly delightful — products that users love to
-                use and developers love to maintain."
+                "My mission is to design and build digital products and systems that users love, 
+                while enabling businesses to convert, retain, and scale—turning well-crafted 
+                solutions into sustainable growth engines."
               </p>
             </div>
           </div>
