@@ -3,7 +3,7 @@ export const PROJECTS_DETAILS = [
     title: "Coworker AI",
     description:
       "An AI-powered virtual coworker that assists with project management, scheduling, and team collaboration.",
-    image: "/projects/coworker-im.png",
+    image: "/projects/coworker_im.png",
     tags: ["React", "OpenAI", "Enthropic", "FastAPI"],
     link: "https://coworker.im",
     github: "#",
