@@ -1,11 +1,11 @@
 import { Navbar } from "@/layout/Navbar";
 import { Hero } from "@/sections/Hero";
-import { About } from "@/sections/About";
-import { Projects } from "@/sections/Projects";
-import { Experience } from "@/sections/Experience";
-import { Testimonials } from "@/sections/Testimonials";
-import { Contact } from "@/sections/Contact";
 import { Footer } from "./layout/Footer";
+import { Projects } from "./sections/projects/Projects";
+import { Contact } from "./sections/contacts/Contact";
+import { Experience } from "./sections/experiences/Experience";
+import { Testimonials } from "./sections/testimonials/Testimonials";
+import { About } from "./sections/about/About";
 
 function App() {
   return (
