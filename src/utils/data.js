@@ -12,7 +12,7 @@ export const projects = [
     title: "E-Commerce Platform",
     description:
       "A full-featured fashion e-commerce solution with inventory management, payment processing, and analytics dashboard.",
-    image: "/projects/shoplanet.png",
+    image: "/projects/shoplanet-2.png",
     tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
     link: "http://62.171.157.225:8086/",
     github: "#",
