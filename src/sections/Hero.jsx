@@ -97,7 +97,7 @@ export const Hero = () => {
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
                 Hi, I’m Mostafa Ryhan Hridoy. I build scalable, high-performance web products
                  and systems using React, Next.js, and TypeScript, where clean engineering 
-                 meets real-world impact
+                 meets real-world impact.
               </p>
             </div>
 

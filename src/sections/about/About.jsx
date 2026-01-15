@@ -40,10 +40,10 @@ export const About = () => {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation-delay-100 text-secondary-foreground">
-              Building the future,
+              Crafting impactful experiences,
               <span className="font-serif italic font-normal text-white">
                 {" "}
-                one component at a time.
+                one line of code at a time.
               </span>
             </h2>
 
@@ -63,7 +63,7 @@ export const About = () => {
               <p>
                 Outside of work, I enjoy playing football, listening to music, 
                 and staying curious—whether that’s exploring new technologies or 
-                contributing to open-source projects.
+                contributing to <br/> open-source projects.
               </p>
             </div>
 
