@@ -1,11 +1,11 @@
 import { ArrowUpRight, Github } from "lucide-react";
-import { projects } from "../../utils/data"
+import { PROJECTS_DETAILS } from "../../utils/data"
 
 export default function ProjectShowcase() {
     // const mdUp = useRespon('up', 'md');
     return (
         <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, idx) => (
+            {PROJECTS_DETAILS.map((project, idx) => (
                 <div
                     key={idx}
                     className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1"
@@ -44,11 +44,11 @@ export default function ProjectShowcase() {
                     <div className="p-6 space-y-4">
                         <div className="flex items-start justify-between">
                             <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                                <a href={project.link} target="_blank" noreferrer>
+                                <a href={project.link} target="_blank" noreferrer="true">
                                     {project.title}
                                 </a>
                             </h3>
-                            <a href={project.link} target="_blank" noreferrer>
+                            <a href={project.link} target="_blank" noreferrer="true">
                                 <ArrowUpRight
                                     className="w-5 h-5 
                       text-muted-foreground group-hover:text-primary

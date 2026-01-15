@@ -1,51 +1,18 @@
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { useState } from "react";
+import { TESTIMONIALS } from "../../utils/data";
 
-const testimonials = [
-  {
-    quote:
-      "Hridoy is one of the most talented engineers I've worked with. His attention to detail and ability to translate complex requirements into elegant solutions is remarkable.",
-    author: "Estiak Ahmed",
-    role: "CTO, RaadCraft Solutions",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
-  },
-  {
-    quote:
-      "Working with Hridoy was a game-changer for our project. He delivered ahead of schedule with code quality that set a new standard for our team.",
-    author: "Arif Ahmed",
-    role: "Frontend Developer, RaadCraft Solutions",
-    avatar:
-      "",
-  },
-  {
-    quote:
-      "Hridoy's expertise in React and TypeScript helped us rebuild our entire frontend in record time. His architectural decisions continue to pay dividends.",
-    author: "Rezuan Ahmed",
-    role: "Engineering Lead, RevEnComm",
-    avatar:
-      "https://images.unsplash.com/photo-1-6461ffad8d80?w=100&h=100&fit=crop",
-  },
-  {
-    quote:
-      "Not only is Hridoy technically brilliant, but he's also a fantastic communicator and team player. He elevated everyone around him.",
-    author: "Sharif Hossain",
-    role: "CEO, RevEnComm",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
-  },
-];
 
 export const Testimonials = () => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   const next = () => {
-    setActiveIdx((prev) => (prev + 1) % testimonials.length);
+    setActiveIdx((prev) => (prev + 1) % TESTIMONIALS.length);
   };
 
   const previous = () => {
     setActiveIdx(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+      (prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length
     );
   };
   return (
@@ -96,21 +63,21 @@ export const Testimonials = () => {
               </div>
 
               <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-8 pt-4">
-                "{testimonials[activeIdx].quote}"
+                "{TESTIMONIALS[activeIdx].quote}"
               </blockquote>
 
               <div className="flex items-center gap-4">
                 <img
-                  src={testimonials[activeIdx].avatar}
-                  alt={testimonials[activeIdx].author}
+                  src={TESTIMONIALS[activeIdx].avatar}
+                  alt={TESTIMONIALS[activeIdx].author}
                   className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20"
                 />
                 <div>
                   <div className="font-semibold">
-                    {testimonials[activeIdx].author}
+                    {TESTIMONIALS[activeIdx].author}
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    {testimonials[activeIdx].role}
+                    {TESTIMONIALS[activeIdx].role}
                   </div>
                 </div>
               </div>
@@ -126,9 +93,10 @@ export const Testimonials = () => {
               </button>
 
               <div className="flex gap-2">
-                {testimonials.map((_, idx) => (
+                {TESTIMONIALS.map((_, idx) => (
                   <button
                     onClick={() => setActiveIdx(idx)}
+                    key={idx}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       idx === activeIdx
                         ? "w-8 bg-primary"
