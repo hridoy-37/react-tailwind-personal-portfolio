@@ -95,9 +95,9 @@ export const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I'm Mostafa Ryhan Hridoy — a software engineer specializing in
-                React, Next.js, and TypeScript. I build scalable, performant web
-                applications that users love.
+                Hi, I’m Mostafa Ryhan Hridoy. I build scalable, high-performance web products
+                 and systems using React, Next.js, and TypeScript, where clean engineering 
+                 meets real-world impact
               </p>
             </div>
 
