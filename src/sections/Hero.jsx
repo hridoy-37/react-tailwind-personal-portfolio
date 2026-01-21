@@ -96,8 +96,8 @@ export const Hero = () => {
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
                 Hi, I’m Mostafa Ryhan Hridoy. I build scalable, high-performance web products
-                 and systems using React, Next.js, and TypeScript, where clean engineering 
-                 meets real-world impact.
+                and systems using React, Next.js, and TypeScript, where clean engineering
+                meets real-world impact.
               </p>
             </div>
 
@@ -106,10 +106,16 @@ export const Hero = () => {
               <Button size="lg">
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton>
-                <Download className="w-5 h-5" />
-                Download CV
-              </AnimatedBorderButton>
+              <a
+                href="/CV-Mostafa-Ryhan-Hridoy.pdf"
+                download="Mostafa_Ryhan_Hridoy_CV.pdf"
+                className="inline-block"
+              >
+                <AnimatedBorderButton>
+                  <Download className="w-5 h-5" />
+                  Download CV
+                </AnimatedBorderButton>
+              </a>
             </div>
 
             {/* Social Links */}
@@ -161,7 +167,7 @@ export const Hero = () => {
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
                   <div className="text-2xl font-bold text-primary">2+</div>
                   {/* put text-muted-foreground if profile background is dark enough */}
-                  <div className="text-xs text-foreground"> 
+                  <div className="text-xs text-foreground">
                     Years Exp.
                   </div>
                 </div>
