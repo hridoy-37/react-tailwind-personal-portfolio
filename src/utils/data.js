@@ -44,7 +44,7 @@ export const TESTIMONIALS = [
     author: "Estiak Ahmed",
     role: "CTO, RaadCraft Solutions",
     avatar:
-      "/public/rumi_bhai.webp",
+      "/rumi_bhai.webp",
   },
   {
     quote:
