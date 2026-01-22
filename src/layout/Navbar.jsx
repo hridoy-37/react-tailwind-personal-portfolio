@@ -5,9 +5,8 @@ const Button = ({ children, size = "md", onClick, className = "" }) => {
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 px-6 py-2 bg-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-all ${
-        size === "sm" ? "text-sm px-4 py-1.5" : ""
-      } ${className}`}
+      className={`inline-flex items-center justify-center gap-2 px-6 py-2 bg-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-all ${size === "sm" ? "text-sm px-4 py-1.5" : ""
+        } ${className}`}
     >
       {children}
     </button>
@@ -48,11 +47,10 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        isScrolled || isMobileMenuOpen
-          ? "glass-strong border-b border-border h-16"
-          : "bg-transparent border-b border-transparent h-20"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled || isMobileMenuOpen
+        ? "bg-card border-b border-border h-16"
+        : "bg-transparent border-b border-transparent h-20"
+        }`}
     >
       <nav className="container mx-auto px-6 h-full flex items-center justify-between">
         <a href="#" className="text-xl font-bold tracking-tighter text-foreground hover:text-primary transition-colors">
@@ -90,23 +88,21 @@ export const Navbar = () => {
       </nav>
 
       <div
-        className={`fixed inset-0 z-[105] md:hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen 
-            ? "opacity-100 pointer-events-auto visible" 
-            : "opacity-0 pointer-events-none invisible"
-        }`}
+        className={`fixed inset-0 z-[105] md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
+          ? "opacity-100 pointer-events-auto visible"
+          : "opacity-0 pointer-events-none invisible"
+          }`}
       >
         {/* Dark Backdrop Overlay */}
-        <div 
+        <div
           className="absolute inset-0 bg-background/90 backdrop-blur-md"
           onClick={() => setIsMobileMenuOpen(false)}
         />
 
         {/* Menu Content Box */}
         <div
-          className={`absolute top-0 left-0 right-0 bg-card border-b border-border px-6 pt-24 pb-10 shadow-2xl transition-transform duration-300 ease-out ${
-            isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
-          }`}
+          className={`absolute top-0 left-0 right-0 bg-card border-b border-border px-6 pt-24 pb-10 shadow-2xl transition-transform duration-300 ease-out ${isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+            }`}
         >
           <div className="flex flex-col gap-6 text-center">
             {navLinks.map((link, index) => (
@@ -115,16 +111,14 @@ export const Navbar = () => {
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 style={{ transitionDelay: `${index * 50}ms` }}
-                className={`text-2xl font-semibold text-foreground hover:text-primary transition-all ${
-                  isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                }`}
+                className={`text-2xl font-semibold text-foreground hover:text-primary transition-all ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                  }`}
               >
                 {link.label}
               </a>
             ))}
-            <div className={`pt-4 transition-all duration-500 delay-300 ${
-               isMobileMenuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-            }`}>
+            <div className={`pt-4 transition-all duration-500 delay-300 ${isMobileMenuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+              }`}>
               <Button onClick={() => setIsMobileMenuOpen(false)} className="w-full py-4">
                 <a href="#contact">Contact Me</a>
               </Button>
