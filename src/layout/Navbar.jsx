@@ -1,17 +1,6 @@
+import { Button } from "@/components/Button";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-
-const Button = ({ children, size = "md", onClick, className = "" }) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 px-6 py-2 bg-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-all ${size === "sm" ? "text-sm px-4 py-1.5" : ""
-        } ${className}`}
-    >
-      {children}
-    </button>
-  );
-};
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -19,6 +8,13 @@ const navLinks = [
   { href: "#experience", label: "Experience" },
   { href: "#testimonials", label: "Testimonials" },
 ];
+
+const scrollToSection = (href) => {
+  const element = document.querySelector(href);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -45,6 +41,16 @@ export const Navbar = () => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
   }, [isMobileMenuOpen]);
 
+  const handleContactClick = () => {
+    setIsMobileMenuOpen(false);
+    scrollToSection("#contact");
+  };
+
+  const handleNavClick = (href) => {
+    setIsMobileMenuOpen(false);
+    scrollToSection(href);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled || isMobileMenuOpen
@@ -60,20 +66,20 @@ export const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1 glass rounded-full px-2 py-1">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.href}
-              href={link.href}
+              onClick={() => scrollToSection(link.href)}
               className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-full hover:bg-muted transition-all"
             >
               {link.label}
-            </a>
+            </button>
           ))}
         </div>
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Button size="sm">
-            <a href="#contact">Contact Me</a>
+          <Button size="sm" onClick={handleContactClick}>
+            Contact Me
           </Button>
         </div>
 
@@ -106,21 +112,20 @@ export const Navbar = () => {
         >
           <div className="flex flex-col gap-6 text-center">
             {navLinks.map((link, index) => (
-              <a
+              <button
                 key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavClick(link.href)}
                 style={{ transitionDelay: `${index * 50}ms` }}
                 className={`text-2xl font-semibold text-foreground hover:text-primary transition-all ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                   }`}
               >
                 {link.label}
-              </a>
+              </button>
             ))}
             <div className={`pt-4 transition-all duration-500 delay-300 ${isMobileMenuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
               }`}>
-              <Button onClick={() => setIsMobileMenuOpen(false)} className="w-full py-4">
-                <a href="#contact">Contact Me</a>
+              <Button onClick={handleContactClick} className="w-full">
+                Contact Me
               </Button>
             </div>
           </div>
