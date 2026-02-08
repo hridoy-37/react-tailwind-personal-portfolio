@@ -9,7 +9,7 @@ export const PROJECTS_DETAILS = [
     github: "#",
   },
   {
-    title: "E-Commerce Platform",
+    title: "Shoplanet",
     description:
       "A full-featured fashion e-commerce solution with inventory management, payment processing, and analytics dashboard.",
     image: "/projects/shoplanet.png",
