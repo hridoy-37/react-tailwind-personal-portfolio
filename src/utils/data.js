@@ -18,6 +18,15 @@ export const PROJECTS_DETAILS = [
     github: "#",
   },
   {
+    title: "RaadCraft Solutions",
+    description:
+      "A pixel-perfect, mobile-first official website for RaadCraft Solutions. Built with a focus on clean code and SEO, it features a dynamic portfolio, an organized service architecture, and a modular team showcase. Designed for high speed and seamless cross-browser compatibility.",
+    image: "/projects/raadcraft-solutions.png",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    link: "https://raad-craft-solutions.vercel.app/",
+    github: "#",
+  },
+  {
     title: "AI Video Generator",
     description:
       "An intelligent video generation tool powered by Sora, and Veo. helping users create better content faster for coworker AI. #cowoker.im ",
@@ -31,7 +40,7 @@ export const PROJECTS_DETAILS = [
     description:
       "A comprehensive financial analytics platform with real-time data visualization, portfolio management, and AI-powered insights.",
     image: "/projects/prize-bond-cheker.png",
-    tags: ["React", "Typescript", "Twailwind"],
+    tags: ["React", "Typescript", "Tailwind CSS"],
     link: "https://prize-bond-checker-bd.vercel.app/",
     github: "#",
   },
