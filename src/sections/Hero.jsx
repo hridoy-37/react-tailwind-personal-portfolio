@@ -16,10 +16,12 @@ const skills = [
   "Next.js",
   "TypeScript",
   "Node.js",
+  "Express.js",
   "GraphQL",
   "PostgreSQL",
   "MongoDB",
   "Redis",
+  "Zustand",
   "Docker",
   "AWS",
   "Vercel",
@@ -72,32 +74,34 @@ export const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-6 pt-28 md:pt-32 pb-20 md:pb-24 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-16 items-center">
           {/* Left Column - Text Content */}
-          <div className="space-y-8">
+          <div className="space-y-10">
             <div className="animate-fade-in">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs sm:text-sm font-medium tracking-wide text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Software Engineer • React Specialist
+                Senior Full-Stack Software Engineer
               </span>
             </div>
 
             {/* Headline */}
-            <div className="space-y-4">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
-                Crafting <span className="text-primary glow-text">digital</span>
+            <div className="space-y-5">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-bold leading-[1.04] tracking-tight animate-fade-in animation-delay-100">
+                Building{" "}
+                <span className="text-primary glow-text">scalable</span>
                 <br />
-                experiences with
+                products and platforms
                 <br />
-                <span className="font-serif italic font-normal text-white">
-                  precision.
+                <span className="font-serif italic font-normal text-foreground/95">
+                  with measurable impact.
                 </span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I’m Mostafa Ryhan Hridoy. I build scalable, high-performance web products
-                and systems using React, Next.js, and TypeScript, where clean engineering
-                meets real-world impact.
+              <p className="text-base sm:text-lg leading-relaxed text-muted-foreground max-w-xl animate-fade-in animation-delay-200">
+                Hi, I’m Mostafa Ryhan Hridoy. I build scalable web products
+                end-to-end using React, Next.js, TypeScript, Node.js, MongoDB,
+                Redis, and Zustand. I focus on clean architecture, performance,
+                and engineering decisions that help teams ship faster.
               </p>
             </div>
 
@@ -122,12 +126,20 @@ export const Hero = () => {
 
             {/* Social Links */}
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
-              <span className="text-sm text-muted-foreground">Follow me: </span>
+              <span className="text-sm font-medium text-muted-foreground">
+                Follow me
+              </span>
               {[
                 { icon: Github, href: "https://github.com/hridoy-37" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/hridoy379/" },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/hridoy379/",
+                },
                 { icon: Twitter, href: "https://x.com/MostafaRyhan" },
-                { icon: Facebook, href: "https://www.facebook.com/mostafaryhan.hridoy.9/" },
+                {
+                  icon: Facebook,
+                  href: "https://www.facebook.com/mostafaryhan.hridoy.9/",
+                },
               ].map((social, idx) => (
                 <a
                   key={idx}
@@ -140,37 +152,39 @@ export const Hero = () => {
             </div>
           </div>
           {/* Right Column - Profile Image */}
-          <div className="relatice animate-fade-in animation-delay-300">
+          <div className="relative animate-fade-in animation-delay-300">
             {/* Profile Image */}
-            <div className="relative max-w-md mx-auto">
+            <div className="relative max-w-[30rem] mx-auto lg:ml-auto">
               <div
                 className="absolute inset-0 
               rounded-3xl bg-gradient-to-br 
               from-primary/30 via-transparent 
               to-primary/10 blur-2xl animate-pulse"
               />
-              <div className="relative glass rounded-3xl p-2 glow-border">
+              <div className="relative glass rounded-3xl p-2.5 md:p-3 glow-border">
                 <img
                   src="/profile.jpg"
-                  alt="Pedro Machado"
-                  className="w-full aspect-[4/5] object-cover rounded-2xl"
+                  alt="Mostafa Ryhan Hridoy"
+                  className="w-full aspect-[4/5] object-cover object-top rounded-2xl"
                 />
 
                 {/* Floating Badge */}
-                <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float">
+                <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3.5 animate-float">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-sm font-medium">
+                    <span className="text-sm font-semibold">
                       Available for work
                     </span>
                   </div>
                 </div>
                 {/* Stats Badge */}
-                <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
-                  <div className="text-2xl font-bold text-primary">2+</div>
+                <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3.5 animate-float animation-delay-500">
+                  <div className="text-2xl font-bold leading-none text-primary">
+                    3+
+                  </div>
                   {/* put text-muted-foreground if profile background is dark enough */}
-                  <div className="text-xs text-foreground">
-                    Years Exp.
+                  <div className="text-xs font-medium text-foreground mt-1">
+                    Years Experience
                   </div>
                 </div>
               </div>
@@ -180,7 +194,7 @@ export const Hero = () => {
 
         {/* Skills Section */}
         <div className="mt-20 animate-fade-in animation-delay-600">
-          <p className="text-sm text-muted-foreground mb-6 text-center">
+          <p className="text-xs sm:text-sm font-medium tracking-wide text-muted-foreground mb-6 text-center">
             Technologies I work with
           </p>
           <div className="relative overflow-hidden">
@@ -195,7 +209,7 @@ export const Hero = () => {
             <div className="flex animate-marquee">
               {[...skills, ...skills].map((skill, idx) => (
                 <div key={idx} className="flex-shrink-0 px-8 py-4">
-                  <span className="text-xl font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors">
+                  <span className="text-lg sm:text-xl font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors">
                     {skill}
                   </span>
                 </div>

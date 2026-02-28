@@ -1,26 +1,57 @@
 const experiences = [
   {
-    "period": "2024 — Present",
-    "role": "Software Engineer",
-    "company": "RaadCraft Solutions",
-    "description": "Leading full-stack architecture for a suite of AI products. Implemented micro-frontend architecture, reduced bundle size by 40%, and improved load times by optimizing code splitting and lazy loading. Collaborated with cross-functional teams to enhance product scalability and maintainability.",
-    "technologies": ["React", "TypeScript", "Next.js", "FastAPI"],
-    "current": true
+    period: "2024 — Present",
+    role: "Senior Full-Stack Engineer",
+    company: "RaadCraft Solutions",
+    description:
+      "Leading full-stack architecture for a suite of AI products. Implemented micro-frontend architecture, reduced bundle size by 40%, and improved load times by optimizing code splitting and lazy loading. Collaborated with cross-functional teams to enhance product scalability and maintainability.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Node.js",
+      "MongoDB",
+      "Redis",
+      "Zustand",
+      "FastAPI",
+    ],
+    current: true,
   },
   {
-    period: "2020 — 2024",
+    period: "2023 — 2024",
+    role: "Full-Stack Developer",
+    company: "RevEnComm",
+    description:
+      "Worked on end-to-end product development, delivering frontend interfaces and backend services for scalable web applications. Built API-driven features, integrated databases, improved system performance, and collaborated closely with product, design, business, and engineering teams.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Redis",
+      "Zustand",
+      "REST API",
+    ],
+    current: false,
+  },
+  {
+    period: "2020 — 2023",
     role: "Freelance Developer",
     company: "Self-Employed",
     description:
       "Delivered custom web solutions for small businesses and startups. Built 15+ websites and applications, handling everything from design to deployment.",
-    technologies: ["JavaScript", "Express", "PostgreSQL"],
+    technologies: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
     current: false,
   },
 ];
 
 export const Experience = () => {
   return (
-    <section id="experience" className="py-32 relative overflow-hidden">
+    <section
+      id="experience"
+      className="py-24 md:py-28 relative overflow-hidden"
+    >
       <div
         className="absolute top-1/2 left-1/4 w-96
        h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
@@ -30,13 +61,13 @@ export const Experience = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <span
-            className="text-secondary-foreground text-sm
+            className="text-secondary-foreground text-xs sm:text-sm
            font-medium tracking-wider uppercase animate-fade-in"
           >
             Career Journey
           </span>
           <h2
-            className="text-4xl md:text-5xl font-bold
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight
            mt-4 mb-6 animate-fade-in animation-delay-100
             text-secondary-foreground"
           >
@@ -48,7 +79,7 @@ export const Experience = () => {
           </h2>
 
           <p
-            className="text-muted-foreground
+            className="text-base leading-relaxed text-muted-foreground
            animate-fade-in animation-delay-200"
           >
             A timeline of my professional growth, from curious beginner to
@@ -61,11 +92,11 @@ export const Experience = () => {
           <div className="timeline-glow absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/70 via-primary/30 to-transparent md:-translate-x-1/2 shadow-[0_0_25px_rgba(32,178,166,0.8)]" />
 
           {/* Experience Items */}
-          <div className="space-y-12">
+          <div className="space-y-10 md:space-y-12">
             {experiences.map((exp, idx) => (
               <div
                 key={idx}
-                className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
+                className="relative grid md:grid-cols-2 gap-8 md:gap-10 animate-fade-in"
                 style={{ animationDelay: `${(idx + 1) * 150}ms` }}
               >
                 {/* Timeline Dot */}
@@ -84,25 +115,29 @@ export const Experience = () => {
                   }`}
                 >
                   <div
-                    className={`glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-500`}
+                    className={`glass p-6 md:p-7 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-500`}
                   >
                     <span className="text-sm text-primary font-medium">
                       {exp.period}
                     </span>
-                    <h3 className="text-xl font-semibold mt-2">{exp.role}</h3>
-                    <p className="text-muted-foreground">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground mt-4">
+                    <h3 className="text-xl md:text-2xl font-semibold tracking-tight mt-2">
+                      {exp.role}
+                    </h3>
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">
+                      {exp.company}
+                    </p>
+                    <p className="text-sm leading-relaxed text-muted-foreground mt-4">
                       {exp.description}
                     </p>
                     <div
-                      className={`flex flex-wrap gap-2 mt-4 ${
+                      className={`flex flex-wrap gap-2 mt-5 ${
                         idx % 2 === 0 ? "md:justify-end" : ""
                       }`}
                     >
                       {exp.technologies.map((tech, techIdx) => (
                         <span
                           key={techIdx}
-                          className="px-3 py-1 bg-surface text-xs rounded-full text-muted-foreground"
+                          className="px-3 py-1 bg-surface text-xs font-medium rounded-full text-muted-foreground"
                         >
                           {tech}
                         </span>

@@ -28,67 +28,72 @@ const highlights = [
 
 export const About = () => {
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
+    <section id="about" className="py-24 md:py-28 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-16 items-center">
           {/* Left Column */}
-          <div className="space-y-8">
+          <div className="space-y-8 md:space-y-9">
             <div className="animate-fade-in">
-              <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase">
+              <span className="text-secondary-foreground text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase">
                 About Me
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation-delay-100 text-secondary-foreground">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight animate-fade-in animation-delay-100 text-secondary-foreground">
               Crafting impactful experiences,
-              <span className="font-serif italic font-normal text-white">
+              <span className="font-serif italic font-normal text-foreground/95">
                 {" "}
                 one line of code at a time.
               </span>
             </h2>
 
-            <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200">
+            <div className="space-y-4 text-base leading-relaxed text-muted-foreground animate-fade-in animation-delay-200">
               <p>
-                I’m a passionate software engineer with over 5 years of experience designing
-                and building digital products and systems that create real impact. My journey
-                began with a curiosity about how things work on the web and has evolved into
-                deep expertise in modern frontend technologies.
+                I’m a senior full-stack software engineer with 3+ years of
+                experience delivering production systems that balance speed,
+                reliability, and long-term maintainability. I lead projects from
+                discovery through delivery with clear technical direction and
+                strong execution.
               </p>
               <p>
-                I specialize in React, Next.js, and TypeScript, building everything from
-                polished landing pages to complex, enterprise-grade applications. My approach
-                blends technical excellence with a strong focus on design quality and user
-                experience.
+                I specialize in full-stack JavaScript architecture with React,
+                Next.js, and TypeScript on the frontend, plus Node.js services
+                with MongoDB and Redis on the backend. I also use Zustand and
+                Context API for predictable state management in complex
+                applications.
               </p>
               <p>
-                Outside of work, I enjoy playing football, listening to music, 
-                and staying curious—whether that’s exploring new technologies or 
-                contributing to <br/> open-source projects.
+                Beyond implementation, I focus on engineering leadership:
+                mentoring developers, improving code quality standards, and
+                aligning technical decisions with product goals to deliver
+                measurable business impact.
               </p>
             </div>
 
-            <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300">
-              <p className="text-lg font-medium italic text-foreground">
-                "My mission is to design and build digital products and systems that users love, 
-                while enabling businesses to convert, retain, and scale—turning well-crafted 
-                solutions into sustainable growth engines."
+            <div className="glass rounded-2xl p-6 md:p-7 glow-border animate-fade-in animation-delay-300">
+              <p className="text-base md:text-lg leading-relaxed font-medium italic text-foreground">
+                "I build systems that scale with the business, empower teams to
+                move with confidence, and turn product vision into reliable,
+                high-impact software."
               </p>
             </div>
           </div>
 
           {/* Right Column - Hilights */}
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-5 md:gap-6">
             {highlights.map((item, idx) => (
               <div
                 key={idx}
-                className="glass p-6 rounded-2xl animate-fade-in"
+                className="glass p-6 md:p-7 rounded-2xl animate-fade-in"
                 style={{ animationDelay: `${(idx + 1) * 100}ms` }}
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary/20">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary/20 transition-colors">
                   <item.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">
+                <h3 className="text-lg font-semibold tracking-tight mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
               </div>
