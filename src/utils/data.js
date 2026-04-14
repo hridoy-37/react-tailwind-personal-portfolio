@@ -14,7 +14,7 @@ export const PROJECTS_DETAILS = [
       "A modern, conversion-focused cart and checkout experience for an online store, with a clean UI, responsive flows, and streamlined purchase steps.",
     image: "/projects/cartelier.png",
     tags: ["React", "NodeJS", "MongoDB", "Stripe", "Redis", "Zustand"],
-    link: "https://cartelier.onrender.com/",
+    link: "https://cartelier.vercel.app/",
     github: "#",
   },
   {
