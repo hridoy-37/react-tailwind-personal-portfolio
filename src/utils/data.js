@@ -14,17 +14,26 @@ export const PROJECTS_DETAILS = [
       "A modern, conversion-focused cart and checkout experience for an online store, with a clean UI, responsive flows, and streamlined purchase steps.",
     image: "/projects/cartelier.png",
     tags: ["React", "NodeJS", "MongoDB", "Stripe", "Redis", "Zustand"],
-    link: "https://cartelier.vercel.app/",
+    link: "https://cartelier.onrender.com/",
     github: "#",
   },
   {
-    title: "Shoplanet",
+    title: "Sangini Lifestyle",
     description:
       "A full-featured fashion e-commerce solution with inventory management, payment processing, and analytics dashboard.",
     image: "/projects/shoplanet.png",
     tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
-    link: "http://62.171.157.225:8086/",
+    link: "https://sanginilifestyle.com/",
     github: "#",
+  },
+  {
+    title: "RevEnComm",
+    description:
+      "A comprehensive digital marketing platform with real-time analytics, forecasting, and AI-driven insights.",
+    image: "/projects/revencomm.png",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript", "Email.js"],
+    link: "https://revencomm.com/",
+    github: "https://github.com/RevEnComm/RevEnComm",
   },
   {
     title: "RaadCraft Solutions",
