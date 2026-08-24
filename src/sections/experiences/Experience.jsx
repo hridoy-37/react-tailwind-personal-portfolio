@@ -1,7 +1,7 @@
 const experiences = [
   {
     period: "2024 — Present",
-    role: "Senior Full-Stack Engineer",
+    role: "Software Engineer",
     company: "RaadCraft Solutions",
     description:
       "Leading full-stack architecture for a suite of AI products. Implemented micro-frontend architecture, reduced bundle size by 40%, and improved load times by optimizing code splitting and lazy loading. Collaborated with cross-functional teams to enhance product scalability and maintainability.",
@@ -19,7 +19,7 @@ const experiences = [
   },
   {
     period: "2023 — 2024",
-    role: "Full-Stack Developer",
+    role: "Frontend Lead & Full-Stack Developer",
     company: "RevEnComm",
     description:
       "Worked on end-to-end product development, delivering frontend interfaces and backend services for scalable web applications. Built API-driven features, integrated databases, improved system performance, and collaborated closely with product, design, business, and engineering teams.",
