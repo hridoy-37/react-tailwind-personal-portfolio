@@ -18,13 +18,12 @@ export const PROJECTS_DETAILS = [
     github: "#",
   },
   {
-    title: "Sangini Lifestyle",
+    title: "Indepth Studio",
     description:
-      "A full-featured fashion e-commerce solution with inventory management, payment processing, and analytics dashboard.",
-    image: "/projects/shoplanet.png",
-    tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
-    link: "https://sanginilifestyle.com/",
-    github: "#",
+      "A custom website for an interior design agency, built to showcase residential and commercial projects, service offerings, and studio philosophy through an editorial, architecture-led design.",
+    image: "/projects/indepth-studio-portfolio-updated.png",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    link: "https://indepthstudio.com/",
   },
   {
     title: "RevEnComm",
@@ -34,6 +33,15 @@ export const PROJECTS_DETAILS = [
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "Email.js"],
     link: "https://revencomm.com/",
     github: "https://github.com/RevEnComm/RevEnComm",
+  },
+  {
+    title: "Sangini Lifestyle",
+    description:
+      "A full-featured fashion e-commerce solution with inventory management, payment processing, and analytics dashboard.",
+    image: "/projects/shoplanet.png",
+    tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
+    link: "https://sanginilifestyle.com/",
+    github: "#",
   },
   {
     title: "RaadCraft Solutions",
@@ -70,16 +78,14 @@ export const TESTIMONIALS = [
       "Hridoy is one of the most talented engineers I've worked with. His attention to detail and ability to translate complex requirements into elegant solutions is remarkable.",
     author: "Estiak Ahmed",
     role: "CTO, RaadCraft Solutions",
-    avatar:
-      "/cto.webp",
+    avatar: "/cto.webp",
   },
   {
     quote:
       "Working with Hridoy was a game-changer for our project. He delivered ahead of schedule with code quality that set a new standard for our team.",
     author: "Arif Ahmed",
     role: "Frontend Developer, RaadCraft Solutions",
-    avatar:
-      "",
+    avatar: "",
   },
   {
     quote:

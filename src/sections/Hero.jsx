@@ -163,7 +163,7 @@ export const Hero = () => {
               />
               <div className="relative glass rounded-3xl p-2.5 md:p-3 glow-border">
                 <img
-                  src="/profile.jpg"
+                  src="/profile.png"
                   alt="Mostafa Ryhan Hridoy"
                   className="w-full aspect-[4/5] object-cover object-top rounded-2xl"
                 />
