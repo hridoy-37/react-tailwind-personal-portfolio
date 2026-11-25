@@ -1,31 +1,119 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Design tokens
+   ------------------------------------------------------------------
+   Semantic colours live in plain CSS variables, one block per theme.
+   `@theme inline` maps them to Tailwind utilities (bg-card, text-primary, …),
+   so every utility follows whichever theme is active on the nearest
+   [data-theme] ancestor. To add a theme, add a [data-theme="…"] block.
+
+   All text colours meet WCAG AA (4.5:1) on background, card and surface.
+   ------------------------------------------------------------------ */
 @theme {
-  --color-background: #0f1418;
-  --color-foreground: #f0f2f5;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+  --font-sans: var(--font-mono);
 
-  --color-card: #141a1f;
+  /* Window chrome: the same in every theme, like a real title bar. */
+  --color-traffic-close: #ff5f57;
+  --color-traffic-minimize: #febc2e;
+  --color-traffic-zoom: #28c840;
+}
 
-  --color-primary: #20b2a6;
-  --color-primary-foreground: #ffffff;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-comment: var(--comment);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-cyan: var(--cyan);
+  --color-purple: var(--purple);
+  --color-amber: var(--amber);
+  --color-red: var(--red);
+  --color-blue: var(--blue);
+}
 
-  --color-secondary: #1f2830;
-  --color-secondary-foreground: #20b2a6;
+/* Dark ("midnight terminal") is the default when no theme is set. */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
 
-  --color-muted: #252e37;
-  --color-muted-foreground: #7a8491;
+  --background: #0a0e13;
+  --foreground: #d4dae3;
+  --card: #0e141b;
+  --surface: #131b24;
+  --border: #1f2a36;
+  --muted: #18212b;
+  --muted-foreground: #8794a5;
+  --comment: #768599;
 
-  --color-border: #242b32;
+  --primary: #3ee08f; /* phosphor green */
+  --primary-foreground: #04120b;
 
-  --radius: 0.75rem;
+  /* syntax palette */
+  --cyan: #5ccfe6;
+  --purple: #c3a6ff;
+  --amber: #ffcc66;
+  --red: #ff6b7a;
+  --blue: #73b8ff;
 
-  --color-highlight: #f5a623;
-  --color-surface: #1a2329;
+  /* effects */
+  --glow-text: 55%; /* strength of the green text glow */
+  --glow-box: 35%; /* strength of the green ring/halo on windows and buttons */
+  --shadow-window: 0 20px 50px -20px rgb(0 0 0 / 0.7);
+}
+
+/* Light ("paper terminal"): same hues, darkened for contrast on white. */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --background: #f6f8fa;
+  --foreground: #1f2328;
+  --card: #ffffff;
+  --surface: #eef1f5;
+  --border: #d0d7de;
+  --muted: #e6eaef;
+  --muted-foreground: #57606a;
+  --comment: #656d76;
+
+  --primary: #0a7a49;
+  --primary-foreground: #ffffff;
+
+  --cyan: #0b6a85;
+  --purple: #7a3ed6;
+  --amber: #8a5a00;
+  --red: #c4202c;
+  --blue: #0960c9;
+
+  /* glows read as blur on light backgrounds, so they're toned right down */
+  --glow-text: 0%;
+  --glow-box: 18%;
+  --shadow-window: 0 12px 32px -18px rgb(31 35 40 / 0.22);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
   }
 
   button {
@@ -33,152 +121,273 @@
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: "Inter", sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-mono);
+    font-feature-settings: "calt" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
   }
 
-  .font-serif {
-    font-family: "Playfair Display", serif;
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 30%, transparent);
+    color: var(--foreground);
+  }
+
+  /* scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+    border: 2px solid var(--background);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
   }
 }
 
 @layer components {
-  .glass {
-    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
-    backdrop-filter: blur(16px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  /* dotted grid backdrop */
+  .bg-grid {
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--foreground) 9%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
   }
 
-  .glass-strong {
-    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
-    backdrop-filter: blur(24px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 60%);
+  .window {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    box-shadow: var(--shadow-window);
   }
 
   .glow-text {
-    text-shadow: 0 0 30px
-      color-mix(in srgb, var(--color-primary) 50%, transparent);
+    text-shadow: 0 0 18px
+      color-mix(in srgb, var(--primary) var(--glow-text), transparent);
   }
 
-  .glow-border {
-    box-shadow: 0 0 20px
-        color-mix(in srgb, var(--color-primary) 20%, transparent),
-      inset 0 0 20px color-mix(in srgb, var(--color-primary) 5%, transparent);
+  .glow-box {
+    box-shadow: 0 0 0 1px
+        color-mix(in srgb, var(--primary) var(--glow-box), transparent),
+      0 0 30px -6px color-mix(in srgb, var(--primary) var(--glow-box), transparent);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 0.72rem;
+    line-height: 1.2rem;
+    color: var(--muted-foreground);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .chip:hover {
+    color: var(--primary);
+    border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+  }
+
+  /* bracketed terminal buttons */
+  .btn-term {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: 0 0 24px -6px
+      color-mix(in srgb, var(--primary) calc(var(--glow-box) * 2.5), transparent);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 34px -4px
+      color-mix(in srgb, var(--primary) calc(var(--glow-box) * 2.8), transparent);
+  }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    background: var(--surface);
+  }
+  .btn-ghost:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.4rem;
+    padding: 0 0.35rem;
+    height: 1.35rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    background: var(--surface);
+    font-size: 0.68rem;
+    color: var(--muted-foreground);
+  }
+
+  /* CRT overlay (toggle via command palette / terminal) */
+  .crt::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 200;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0) 0px,
+      rgb(0 0 0 / 0) 2px,
+      rgb(0 0 0 / 0.22) 3px
+    );
+    mix-blend-mode: multiply;
+  }
+  .crt::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 201;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 60%,
+      rgb(0 0 0 / 0.45) 100%
+    );
+    animation: flicker 6s infinite steps(1);
   }
 }
 
 @layer utilities {
-  @keyframes fade-in {
-    from {
+  @keyframes blink {
+    50% {
       opacity: 0;
-      transform: translateY(20px);
-      filter: blur(10px);
     }
-    to {
+  }
+  .animate-blink {
+    animation: blink 1.05s steps(1) infinite;
+  }
+
+  @keyframes flicker {
+    0%,
+    100% {
       opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
     }
-  }
-
-  @keyframes slow-drift {
-    0%,
-    100% {
-      transform: translate(0, 0);
+    47% {
+      opacity: 0.92;
     }
-    25% {
-      transform: translate(20px, -30px);
-    }
-    50% {
-      transform: translate(-15px, -20px);
-    }
-    75% {
-      transform: translate(30px, 10px);
-    }
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
+    48% {
+      opacity: 1;
     }
   }
 
   @keyframes marquee {
-    0% {
+    from {
       transform: translateX(0);
     }
-    100% {
+    to {
       transform: translateX(-50%);
     }
   }
-
-  .animate-fade-in {
-    animation: fade-in 0.8s ease-out both;
-  }
-
-  .animate-float {
-    animation: float 4s ease-in-out infinite;
-  }
-
   .animate-marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee 100s linear infinite;
   }
 
-  .animation-delay-100 {
-    animation-delay: 100ms;
-  }
-
-  .animation-delay-200 {
-    animation-delay: 200ms;
-  }
-
-  .animation-delay-300 {
-    animation-delay: 300ms;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 400ms;
-  }
-
-  .animation-delay-500 {
-    animation-delay: 500ms;
-  }
-
-  .animation-delay-600 {
-    animation-delay: 600ms;
-  }
-
-  .animation-delay-800 {
-    animation-delay: 800ms;
-  }
-
-  @keyframes animated-border {
-    0% {
-      stroke-dashoffset: 400;
+  @keyframes scan {
+    from {
+      transform: translateY(-100%);
     }
+    to {
+      transform: translateY(100%);
+    }
+  }
+  .animate-scan {
+    animation: scan 3.5s linear infinite;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes glitch {
+    0%,
+    92%,
     100% {
-      stroke-dashoffset: -550;
+      text-shadow: none;
+      transform: none;
+    }
+    93% {
+      text-shadow: -2px 0 var(--red), 2px 0 var(--cyan);
+      transform: translateX(1px);
+    }
+    95% {
+      text-shadow: 2px 0 var(--red), -2px 0 var(--cyan);
+      transform: translateX(-1px);
+    }
+    97% {
+      text-shadow: none;
+      transform: none;
     }
   }
+  .animate-glitch {
+    animation: glitch 5s infinite;
+  }
+}
 
-  .group:hover .animated-border-path {
-    animation: animated-border 1.5s linear infinite;
+/* Mobile menu entrance: window drops in, then each line "types" in. */
+@layer utilities {
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .animate-menu-in {
+    animation: menu-in 0.22s ease-out both;
   }
 
-  .animated-border:hover {
-    background-color: color-mix(in srgb, #26c4b8 15%, transparent);
-    backdrop-filter: blur(16px);
-    box-shadow: 0 0 20px color-mix(in srgb, #26c4b8 20%, transparent);
+  @keyframes line-in {
+    from {
+      opacity: 0;
+      transform: translateX(-6px);
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      clip-path: inset(0 0 0 0);
+    }
   }
-
-  .timeline-glow {
-    box-shadow: 0 0 40px
-        color-mix(in srgb, var(--color-primary) 35%, transparent),
-      0 0 80px color-mix(in srgb, var(--color-primary) 25%, transparent);
+  .animate-line-in {
+    animation: line-in 0.28s ease-out both;
   }
 }

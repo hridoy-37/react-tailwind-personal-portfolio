@@ -1,136 +1,124 @@
-import { Button } from "@/components/Button";
-import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
+import { Command } from "lucide-react";
+import { useUI } from "@/context/ui-context";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { HOME_ID, PROFILE, SECTIONS } from "@/data";
+import { useActiveSection } from "@/hooks/useActiveSection";
+import { useEventListener } from "@/hooks/useEventListener";
+import { modKey } from "@/utils/platform";
+import { MobileMenu } from "./MobileMenu";
 
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#testimonials", label: "Testimonials" },
-];
-
-const scrollToSection = (href) => {
-  const element = document.querySelector(href);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
-  }
-};
+const DESKTOP_MIN_WIDTH = 1024;
+const SCROLLED_AFTER_PX = 10;
 
 export const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { setPaletteOpen } = useUI();
+  const active = useActiveSection();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  const [scrolled, setScrolled] = useState(() => window.scrollY > SCROLLED_AFTER_PX);
 
-  // Close menu on resize to desktop
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setIsMobileMenuOpen(false);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  useEventListener("scroll", () => setScrolled(window.scrollY > SCROLLED_AFTER_PX), { passive: true });
+  useEventListener("resize", () => window.innerWidth >= DESKTOP_MIN_WIDTH && setMenuOpen(false));
 
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
-  }, [isMobileMenuOpen]);
-
-  const handleContactClick = () => {
-    setIsMobileMenuOpen(false);
-    scrollToSection("#contact");
+  const openPalette = () => {
+    setMenuOpen(false);
+    setPaletteOpen(true);
   };
 
-  const handleNavClick = (href) => {
-    setIsMobileMenuOpen(false);
-    scrollToSection(href);
+  const closeMenu = ({ restoreFocus = false } = {}) => {
+    setMenuOpen(false);
+    if (restoreFocus) menuButtonRef.current?.focus();
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled || isMobileMenuOpen
-        ? "bg-card border-b border-border h-16"
-        : "bg-transparent border-b border-transparent h-20"
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-100 transition-colors duration-300 ${
+          scrolled || menuOpen ? "bg-background/90 backdrop-blur-md border-b border-border" : "border-b border-transparent"
         }`}
-    >
-      <nav className="container mx-auto px-6 h-full flex items-center justify-between">
-        <a href="#" className="text-xl font-bold tracking-tighter text-foreground hover:text-primary transition-colors">
-          HRIDOY<span className="text-primary">.</span>
-        </a>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-1 glass rounded-full px-2 py-1">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => scrollToSection(link.href)}
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-full hover:bg-muted transition-all"
-            >
-              {link.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Desktop CTA */}
-        <div className="hidden md:block">
-          <Button size="sm" onClick={handleContactClick}>
-            Contact Me
-          </Button>
-        </div>
-
-        {/* Mobile Toggle Button */}
-        <button
-          className="md:hidden relative z-[110] p-2 text-foreground hover:text-primary transition-colors"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle Menu"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
-
-      <div
-        className={`fixed inset-0 z-[105] md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
-          ? "opacity-100 pointer-events-auto visible"
-          : "opacity-0 pointer-events-none invisible"
-          }`}
       >
-        {/* Dark Backdrop Overlay */}
-        <div
-          className="absolute inset-0 bg-background/90 backdrop-blur-md"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
+        <nav className="container mx-auto px-4 sm:px-6 h-14 flex items-center gap-4" aria-label="Main">
+          <Logo />
+          <DesktopTabs active={active} />
 
-        {/* Menu Content Box */}
-        <div
-          className={`absolute top-0 left-0 right-0 bg-card border-b border-border px-6 pt-24 pb-10 shadow-2xl transition-transform duration-300 ease-out ${isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
-            }`}
-        >
-          <div className="flex flex-col gap-6 text-center">
-            {navLinks.map((link, index) => (
-              <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
-                style={{ transitionDelay: `${index * 50}ms` }}
-                className={`text-2xl font-semibold text-foreground hover:text-primary transition-all ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                  }`}
-              >
-                {link.label}
-              </button>
-            ))}
-            <div className={`pt-4 transition-all duration-500 delay-300 ${isMobileMenuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-              }`}>
-              <Button onClick={handleContactClick} className="w-full">
-                Contact Me
-              </Button>
-            </div>
+          <div className="ml-auto flex items-center gap-2">
+            <button
+              onClick={openPalette}
+              className="hidden sm:flex items-center gap-2 h-8 pl-3 pr-1.5 rounded-md border border-border bg-surface/70 text-xs text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors"
+              aria-label="Open command palette"
+            >
+              <Command className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>commands</span>
+              <span className="kbd">{modKey} K</span>
+            </button>
+            <ThemeToggle />
+            <MenuToggle ref={menuButtonRef} open={menuOpen} onToggle={() => setMenuOpen((o) => !o)} />
           </div>
-        </div>
-      </div>
-    </header>
+        </nav>
+      </header>
+
+      {/* Rendered outside <header>: its backdrop-filter would otherwise trap this fixed overlay. */}
+      {menuOpen && <MobileMenu active={active} onClose={closeMenu} onOpenPalette={openPalette} />}
+    </>
   );
 };
+
+const Logo = () => (
+  <a href={`#${HOME_ID}`} className="text-sm font-bold shrink-0 group" aria-label="Back to top">
+    <span className="text-primary">~/</span>
+    <span className="group-hover:text-primary transition-colors">{PROFILE.handle}</span>
+    <span className="text-primary animate-blink">▍</span>
+  </a>
+);
+
+/** Editor-style tabs, one per section; the active one gets an underline. */
+const DesktopTabs = ({ active }) => (
+  <ul className="hidden lg:flex items-stretch h-full ml-4 flex-1">
+    {SECTIONS.map(({ id, file }) => {
+      const isActive = active === id;
+      return (
+        <li key={id} className="flex">
+          <a
+            href={`#${id}`}
+            aria-current={isActive ? "true" : undefined}
+            className={`relative flex items-center px-3.5 text-[0.8rem] transition-colors ${
+              isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {file}
+            <span
+              className={`absolute inset-x-2 bottom-0 h-0.5 rounded-full bg-primary transition-opacity ${
+                isActive ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+);
+
+/** `$ menu` when closed, vim's `:q` when open. */
+const MenuToggle = ({ ref, open, onToggle }) => (
+  <button
+    ref={ref}
+    onClick={onToggle}
+    aria-label={open ? "Close menu" : "Open menu"}
+    aria-expanded={open}
+    aria-controls="mobile-menu"
+    className={`lg:hidden flex items-center gap-1.5 h-8 px-3 rounded-md border text-xs transition-colors ${
+      open
+        ? "border-primary/60 bg-primary/10 text-primary"
+        : "border-border bg-surface/70 text-foreground hover:border-primary/60 hover:text-primary"
+    }`}
+  >
+    {open ? (
+      <span className="font-bold">:q</span>
+    ) : (
+      <>
+        <span className="text-primary">$</span> menu
+      </>
+    )}
+  </button>
+);
