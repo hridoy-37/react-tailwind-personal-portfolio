@@ -58,9 +58,18 @@ const Intro = () => {
         <span className="text-primary animate-blink">_</span>
       </h1>
 
-      <p className="text-base sm:text-lg text-cyan min-h-7" aria-hidden="true">
-        <span className="text-purple">&gt;</span> {typed}
-        <span className="animate-blink">▍</span>
+      {/* Every role is stacked invisibly in the same grid cell, so the line always reserves the height of
+          the longest-wrapping role and the typing never shifts the content below it. */}
+      <p className="grid text-base sm:text-lg text-cyan min-h-7" aria-hidden="true">
+        {PROFILE.roles.map((role) => (
+          <span key={role} className="invisible col-start-1 row-start-1">
+            &gt; {role}▍
+          </span>
+        ))}
+        <span className="col-start-1 row-start-1">
+          <span className="text-purple">&gt;</span> {typed}
+          <span className="animate-blink">▍</span>
+        </span>
       </p>
       <p className="sr-only">{PROFILE.role}</p>
 
