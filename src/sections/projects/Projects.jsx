@@ -1,28 +1,49 @@
-import SectionHeader from "./section-header";
-import ProjectShowcase from "./project-showcase";
-// import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import { useMemo, useState } from "react";
+import { Reveal } from "@/components/Reveal";
+import { Section } from "@/components/Section";
+import { PROJECTS } from "@/data";
+import { includesQuery } from "@/utils/search";
+import { FeaturedProjectCard, ProjectCard } from "./ProjectCards";
+import { ProjectFilter } from "./ProjectFilter";
 
+const searchableText = (p) => [p.title, p.kind, p.description, ...p.tags].join(" ");
 
 export const Projects = () => {
+  const [query, setQuery] = useState("");
+
+  const matches = useMemo(() => PROJECTS.filter((p) => includesQuery(searchableText(p), query)), [query]);
+  const featured = matches.filter((p) => p.featured);
+  const others = matches.filter((p) => !p.featured);
+
   return (
-    <section id="projects" className="py-32 relative overflow-hidden">
-      {/* Bg glows */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
-      <div className="container mx-auto px-6 relative z-10">
-        
-        <SectionHeader />
+    <Section
+      id="projects"
+      command="ls -la ~/projects"
+      subtitle="things I've built and shipped. filter them like a true terminal dweller."
+    >
+      <Reveal className="mb-8">
+        <ProjectFilter value={query} onChange={setQuery} shown={matches.length} total={PROJECTS.length} />
+      </Reveal>
 
-        <ProjectShowcase />
+      {matches.length === 0 && (
+        <p className="text-sm text-comment py-10">
+          grep: no matches for &quot;<span className="text-red">{query}</span>&quot;. try a different pattern.
+        </p>
+      )}
 
-        {/* View All CTA */}
-        {/* <div className="text-center mt-12 animate-fade-in animation-delay-500">
-          <AnimatedBorderButton>
-            View All Projects
-            <ArrowUpRight className="w-5 h-5" />
-          </AnimatedBorderButton>
-        </div> */}
+      <div className="space-y-6">
+        {featured.map((project, i) => (
+          <FeaturedProjectCard key={project.slug} project={project} delay={i * 100} />
+        ))}
       </div>
-    </section>
+
+      {others.length > 0 && (
+        <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-6 ${featured.length ? "mt-6" : ""}`}>
+          {others.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} delay={(i % 3) * 80} />
+          ))}
+        </div>
+      )}
+    </Section>
   );
 };

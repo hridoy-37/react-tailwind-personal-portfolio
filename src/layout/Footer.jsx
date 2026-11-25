@@ -1,66 +1,24 @@
-import { Github, Linkedin, Twitter, Facebook } from "lucide-react";
+import { SocialLinks } from "@/components/SocialLinks";
+import { HOME_ID, PROFILE } from "@/data";
 
-const socialLinks = [
-  { icon: Github, href: "https://github.com/hridoy-37", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/hridoy379/", label: "LinkedIn" },
-  { icon: Twitter, href: "https://x.com/MostafaRyhan", label: "Twitter" },
-  { icon: Facebook, href: "https://www.facebook.com/mostafaryhan.hridoy.9/", label: "Facebook" },
-];
-
-const footerLinks = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" },
-];
-
-export const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="py-12 border-t border-border">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo & Copyright */}
-          <div className="text-center md:text-left">
-            <a href="#" className="text-xl font-bold tracking-tight">
-              HRIDOY<span className="text-primary">.</span>
-            </a>
-            <p className="text-sm text-muted-foreground mt-2">
-              © {currentYear} Hridoy. All rights reserved.
-            </p>
-          </div>
-
-          {/* Links */}
-          <nav className="flex flex-wrap justify-center gap-6">
-            {footerLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                noreferrer="true"
-                aria-label={social.label}
-                className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
-              >
-                <social.icon className="w-5 h-5" />
-              </a>
-            ))}
-          </div>
+export const Footer = () => (
+  <footer className="border-t border-border pb-10 md:pb-14 pt-10">
+    <div className="container mx-auto px-4 sm:px-6">
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 text-sm">
+        <div className="text-center md:text-left space-y-2">
+          <a href={`#${HOME_ID}`} className="font-bold">
+            <span className="text-primary">~/</span>
+            {PROFILE.handle}
+          </a>
+          <p className="text-comment text-xs">
+            /* © {new Date().getFullYear()} {PROFILE.name}. Built with React + Tailwind, powered by caffeine. */
+          </p>
+          <p className="text-comment text-xs">
+            exit code <span className="text-primary">0</span> · no bugs were harmed (that we know of)
+          </p>
         </div>
+        <SocialLinks />
       </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
