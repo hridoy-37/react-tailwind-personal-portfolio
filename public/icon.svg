@@ -1,13 +1,10 @@
 <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background Shield (Optional, can be removed for transparent look) -->
-  <rect width="100" height="100" rx="20" fill="#0a0e13"/>
+  <!-- Terminal tile: site background + border colours -->
+  <rect x="2" y="2" width="96" height="96" rx="22" fill="#0a0e13" stroke="#1f2a36" stroke-width="4"/>
 
-  <!-- The "H" Monogram -->
-  <path d="M30 30V70M70 30V70M30 50H70" stroke="#d4dae3" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Prompt chevron in phosphor green -->
+  <path d="M24 30L46 50L24 70" stroke="#3ee08f" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- The Signature Primary Green Dot -->
-  <circle cx="78" cy="72" r="8" fill="#3ee08f" />
-
-  <!-- Subtle Glow Effect on the Dot -->
-  <circle cx="78" cy="72" r="12" fill="#3ee08f" fill-opacity="0.2" />
+  <!-- Block cursor -->
+  <rect x="54" y="60" width="24" height="11" rx="2" fill="#d4dae3"/>
 </svg>

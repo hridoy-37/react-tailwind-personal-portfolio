@@ -51,7 +51,14 @@ const InfoRow = ({ label, children }) => (
   </div>
 );
 
-/** Green-tinted grayscale photo with a scanline sweep; full colour on hover. */
+const CORNERS = [
+  "top-1.5 left-1.5 border-t-2 border-l-2",
+  "top-1.5 right-1.5 border-t-2 border-r-2",
+  "bottom-1.5 left-1.5 border-b-2 border-l-2",
+  "bottom-1.5 right-1.5 border-b-2 border-r-2",
+];
+
+/** Natural-colour photo behind a subtle CRT layer (scanlines, vignette, sweep) and viewfinder brackets; clears on hover, and is clear by default on touch devices. */
 const Portrait = () => (
   <div className="relative mx-auto sm:mx-0 w-40 sm:w-44 aspect-square rounded-md overflow-hidden border border-border group">
     <img
@@ -60,14 +67,15 @@ const Portrait = () => (
       width={400}
       height={400}
       fetchPriority="high"
-      className="w-full h-full object-cover object-top grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
+      className="w-full h-full object-cover object-top saturate-[.85] contrast-105 group-hover:saturate-100 touch:saturate-100 transition-all duration-500"
     />
-    <div
-      className="absolute inset-0 bg-primary/25 mix-blend-color group-hover:opacity-0 transition-opacity duration-500"
-      aria-hidden="true"
-    />
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <div className="h-1/3 w-full bg-linear-to-b from-transparent via-primary/15 to-transparent animate-scan" />
+    <div className="absolute inset-0 pointer-events-none group-hover:opacity-0 touch:hidden transition-opacity duration-500" aria-hidden="true">
+      <div className="absolute inset-0 portrait-scanlines" />
+      <div className="absolute inset-0 portrait-vignette" />
+      <div className="h-1/3 w-full bg-linear-to-b from-transparent via-white/10 to-transparent animate-scan" />
     </div>
+    {CORNERS.map((pos) => (
+      <span key={pos} className={`absolute w-3.5 h-3.5 border-amber/80 pointer-events-none ${pos}`} aria-hidden="true" />
+    ))}
   </div>
 );

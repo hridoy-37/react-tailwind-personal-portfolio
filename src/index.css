@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Devices that can't hover (phones/tablets): show hover-only states by default */
+@custom-variant touch (@media (hover: none));
+
 /* ------------------------------------------------------------------
    Design tokens
    ------------------------------------------------------------------
@@ -278,6 +281,19 @@
 }
 
 @layer utilities {
+  /* Hero portrait: neutral CRT texture (no colour tint) */
+  .portrait-scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0) 0px,
+      rgb(0 0 0 / 0) 2px,
+      rgb(0 0 0 / 0.18) 3px
+    );
+  }
+  .portrait-vignette {
+    background: radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.35) 100%);
+  }
+
   @keyframes blink {
     50% {
       opacity: 0;
